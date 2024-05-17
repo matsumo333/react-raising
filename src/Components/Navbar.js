@@ -15,15 +15,31 @@ function Navbar({ email }) {
         &#9776;
       </div>
       <ul className={`nav-links ${isOpen ? "active" : ""}`}>
-        <p>メールアドレス: {email}</p>
-        <Link to="/">ホーム</Link>
-        <Link to="/createpost">投稿</Link>
-        <Link to="/schedule">日程</Link>
-        <a href="https://l--l.jp/gtlist/in.cgi?cd=sc2v4y2qdqq6">参加表明</a>
-        <Link to="/link">リンク</Link>
-        <Link to="/login">ログイン</Link>
-        <Link to="/logout">ログアウト</Link>
-        <Link to="/signupform">サインアップ</Link>
+        {email && <li className="email">メールアドレス: {email}</li>}
+        <li>
+          <Link to="/">ホーム</Link>
+        </li>
+        <li>
+          <Link to="/createpost">投稿</Link>
+        </li>
+        <li>
+          <Link to="/schedule">日程</Link>
+        </li>
+        <li>
+          <a href="https://l--l.jp/gtlist/in.cgi?cd=sc2v4y2qdqq6">参加表明</a>
+        </li>
+        <li>
+          <Link to="/link">リンク</Link>
+        </li>
+        <li>
+          <Link to="/login">ログイン</Link>
+        </li>
+        <li>
+          <Link to="/logout">ログアウト</Link>
+        </li>
+        <li>
+          <Link to="/signupform">サインアップ</Link>
+        </li>
       </ul>
     </nav>
   );

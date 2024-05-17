@@ -12,12 +12,16 @@ import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import "./Login.css";
 
+// App elementの設定を追加
+Modal.setAppElement("#root");
+
 const Login = ({ onLogin }) => {
   const navigate = useNavigate();
   const firebaseAuth = getAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const [useremail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const [resetEmail, setResetEmail] = useState("");
 
@@ -63,8 +67,9 @@ const Login = ({ onLogin }) => {
       .then((result) => {
         localStorage.setItem("isAuth", true);
         console.log("ログインの結果だよ");
-        console.log("Email:", email); // ここで入力されたメールアドレスを表示
-        onLogin(email); // メールアドレスを親コンポーネントに渡す
+        console.log("Email:", email);
+        setUserEmail(email);
+        localStorage.setItem("userEmail", email);
         navigate("/");
       })
       .catch((error) => {
@@ -75,6 +80,10 @@ const Login = ({ onLogin }) => {
         setIsModalOpen(false);
       });
   };
+
+  useEffect(() => {
+    console.log("更新後userEmail", email);
+  }, [email]);
 
   const handlePasswordReset = (e) => {
     e.preventDefault();

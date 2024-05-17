@@ -9,15 +9,23 @@ import Logout from "./Components/Logout";
 import Schedule from "./Components/Schedule";
 import Login from "./Components/Login";
 import SignUpForm from "./Components/SignUpForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
   const [username, setUsername] = useState(localStorage.getItem("userName"));
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(localStorage.getItem("userEmail") || "");
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("userEmail");
+    if (storedEmail) {
+      setEmail(storedEmail);
+    }
+  }, []);
 
   const handleLogin = (email) => {
     setEmail(email);
+    localStorage.setItem("userEmail", email);
   };
 
   return (
@@ -29,7 +37,10 @@ function App() {
         <Route path="/schedule" element={<Schedule />}></Route>
         <Route path="/link" element={<Links />}></Route>
         <Route path="/login" element={<Login onLogin={handleLogin} />}></Route>
-        <Route path="/logout" element={<Logout />}></Route>
+        <Route
+          path="/logout"
+          element={<Logout setIsAuth={setIsAuth} />}
+        ></Route>
         <Route path="/signupform" element={<SignUpForm />}></Route>
       </Routes>
     </Router>
