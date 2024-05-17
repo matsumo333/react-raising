@@ -1,0 +1,130 @@
+.container {
+  position: absolute; /* 絶対位置指定 */
+  top: calc(50px); /* Navbarの下と画面の50%の位置の合計値に */
+  left: 50%; /* 左端を画面の50%の位置に */
+  transform: translateX(-50%); /* 左右中央揃え */
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 20px; /* 各リンクの間隔 */
+  width: 500px;
+  background-color: #4f8fd3;
+  align-items: center;
+  justify-items: center;
+  box-shadow: 8px 8px 8px -5px #414141;
+}
+
+.container p {
+  width: 450px;
+  text-align: center;
+}
+
+.content {
+  display: block; /* リンクを縦に並べる */
+  width: 300px;
+  text-decoration: none;
+  color: rgb(245, 245, 249); /* リンクの色 */
+  background-color: rgb(21, 36, 154);
+  padding: 0 30px 20px 30px;
+  transition: 200ms;
+  border-radius: 5px;
+  box-shadow: 8px 8px 8px -5px #414141;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container button {
+  padding: 10px;
+  background-color: #f9f9f9;
+  color: #5452ec;
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+  width: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 15px -5px #f7f6f6;
+}
+
+.container button:hover {
+  background-color: #1eb300;
+  cursor: pointer; /* カーソルを指に変更 */
+  font-size: 14px;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0px 8px 8px -5px #414141;
+  border-radius: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-input {
+  height: 40px; /* 高さを調整 */
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-button {
+  margin-top: 10px;
+  margin-right: 30px;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 200ms;
+}
+
+.modal-button2 {
+  margin-top: 10px;
+  margin-right: 30px;
+  padding: 10px;
+  background-color: #6eb2fb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 200ms;
+}
+
+.modal-button:hover {
+  background-color: #1eb300;
+  cursor: pointer; /* カーソルを指に変更 */
+  font-size: 14px;
+}
+
+.modal-button2:hover {
+  background-color: #7aa871;
+  cursor: pointer; /* カーソルを指に変更 */
+  font-size: 14px;
+}

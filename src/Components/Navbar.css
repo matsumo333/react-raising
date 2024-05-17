@@ -1,0 +1,69 @@
+/* 基本のスタイル */
+.navbar {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(243, 134, 56);
+  padding-right: 50px;
+  gap: 45px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 45px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  transition: all 0.1s;
+}
+
+.nav-links a:hover {
+  color: cadetblue;
+  cursor: pointer; /* カーソルを指に変更 */
+  font-size: 1.15em;
+}
+
+.nav-links a svg {
+  margin-right: 7px;
+}
+
+/* メニューアイコンのスタイル */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+/* モバイル対応のメディアクエリ */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 0;
+    padding-left: 20px;
+    gap: 10px;
+    height: auto;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 10px 0;
+  }
+}
