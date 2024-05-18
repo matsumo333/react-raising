@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import "./Logout.css";
 
 const Logout = ({ setIsAuth, setUsername }) => {
   const navigate = useNavigate();
@@ -16,8 +17,7 @@ const Logout = ({ setIsAuth, setUsername }) => {
   };
 
   return (
-    <div>
-      <p>ログアウトする</p>
+    <div className="container2">
       <button onClick={logout}>ログアウト</button>
     </div>
   );

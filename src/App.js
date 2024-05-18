@@ -12,36 +12,19 @@ import SignUpForm from "./Components/SignUpForm";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
-  const [username, setUsername] = useState(localStorage.getItem("userName"));
-  const [email, setEmail] = useState(localStorage.getItem("userEmail") || "");
-
-  useEffect(() => {
-    const storedEmail = localStorage.getItem("userEmail");
-    if (storedEmail) {
-      setEmail(storedEmail);
-    }
-  }, []);
-
-  const handleLogin = (email) => {
-    setEmail(email);
-    localStorage.setItem("userEmail", email);
-  };
+  const [isAuth, setIsAuth] = useState(false);
 
   return (
     <Router>
-      <Navbar isAuth={isAuth} email={email} />
+      <Navbar isAuth={isAuth} />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/createpost" element={<CreatePost />}></Route>
-        <Route path="/schedule" element={<Schedule />}></Route>
-        <Route path="/link" element={<Links />}></Route>
-        <Route path="/login" element={<Login onLogin={handleLogin} />}></Route>
-        <Route
-          path="/logout"
-          element={<Logout setIsAuth={setIsAuth} />}
-        ></Route>
-        <Route path="/signupform" element={<SignUpForm />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/link" element={<Links />} />
+        <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+        <Route path="/logout" element={<Logout setIsAuth={setIsAuth} />} />
+        <Route path="/signupform" element={<SignUpForm />} />
       </Routes>
     </Router>
   );

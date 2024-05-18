@@ -78,6 +78,14 @@ const SignupForm = () => {
   return (
     <div className="signup-form-contanier">
       <div className="signup-form-title">
+        <button
+          className="close-button"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          ｘ
+        </button>
         <h2>新規登録</h2>
       </div>
       {!signupSuccess ? (

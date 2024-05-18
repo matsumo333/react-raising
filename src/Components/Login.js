@@ -7,15 +7,12 @@ import {
   signInWithEmailLink,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { provider } from "../firebase";
+import { auth, provider } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import "./Login.css";
 
-// App elementの設定を追加
-Modal.setAppElement("#root");
-
-const Login = ({ onLogin }) => {
+const Login = ({ setIsAuth }) => {
   const navigate = useNavigate();
   const firebaseAuth = getAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,17 +40,14 @@ const Login = ({ onLogin }) => {
   }, [firebaseAuth, navigate]);
 
   const loginInWithGoogle = () => {
-    signInWithPopup(firebaseAuth, provider)
-      .then((result) => {
-        localStorage.setItem("isAuth", true);
-        console.log(result);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    //Googleでログイン
+    signInWithPopup(auth, provider).then((result) => {
+      localStorage.setItem("isAuth", true);
+      setIsAuth(true);
+      console.log(result);
+      navigate("/");
+    });
   };
-
   const redirectToSignupForm = () => {
     navigate("/signupform");
   };
@@ -66,7 +60,7 @@ const Login = ({ onLogin }) => {
     signInWithEmailAndPassword(firebaseAuth, email, password)
       .then((result) => {
         localStorage.setItem("isAuth", true);
-        console.log("ログインの結果だよ");
+        setIsAuth(true);
         console.log("Email:", email);
         setUserEmail(email);
         localStorage.setItem("userEmail", email);

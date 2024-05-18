@@ -1,0 +1,49 @@
+.container2 {
+  position: absolute; /* 絶対位置指定 */
+  top: calc(50px); /* Navbarの下と画面の50%の位置の合計値に */
+  left: 50%; /* 左端を画面の50%の位置に */
+  transform: translateX(-50%); /* 左右中央揃え */
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 20px; /* 各リンクの間隔 */
+  width: 500px;
+  background-color: #4f8fd3;
+  align-items: center;
+  justify-items: center;
+  box-shadow: 8px 8px 8px -5px #414141;
+}
+
+.content {
+  display: block; /* リンクを縦に並べる */
+  width: 300px;
+  text-decoration: none;
+  color: rgb(245, 245, 249); /* リンクの色 */
+  background-color: rgb(21, 36, 154);
+  padding: 0 30px 20px 30px;
+  transition: 200ms;
+  border-radius: 5px;
+  box-shadow: 8px 8px 8px -5px #414141;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container2 button {
+  width: 300px;
+  text-decoration: none;
+  color: rgb(245, 245, 249); /* リンクの色 */
+  background-color: rgb(21, 36, 154);
+  padding: 10px 10px;
+  transition: 200ms;
+  margin: 40px 0;
+  border-radius: 5px;
+  box-shadow: 8px 8px 8px -5px #414141;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
