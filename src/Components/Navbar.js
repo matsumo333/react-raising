@@ -9,24 +9,45 @@ const Navbar = ({ isAuth }) => {
     setMenuActive(!menuActive);
   };
 
+  const closeMenu = () => {
+    setMenuActive(false);
+  };
+
   return (
     <nav className="navbar">
       <div className="menu-icon" onClick={toggleMenu}>
         &#9776; {/* ハンバーガーアイコン */}
       </div>
       <ul className={`nav-links ${menuActive ? "active" : ""}`}>
-        <Link to="/">ホーム</Link>
-        <Link to="/schedule">日程</Link>
-        <Link to="/link">リンク</Link>
+        <li onClick={closeMenu}>
+          <Link to="/">ホーム</Link>
+        </li>
+        <li onClick={closeMenu}>
+          <Link to="/schedule">日程</Link>
+        </li>
+        <li onClick={closeMenu}>
+          <Link to="/link">リンク</Link>
+        </li>
+        <li onClick={closeMenu}>
+          <Link to="/Slide1">スライド</Link>
+        </li>
         {!isAuth ? (
-          <>
+          <li onClick={closeMenu}>
             <Link to="/login">ログイン</Link>
-          </>
+          </li>
         ) : (
           <>
-            <Link to="/createpost">投稿</Link>
-            <a href="https://l--l.jp/gtlist/in.cgi?cd=sc2v4y2qdqq6">参加表明</a>
-            <Link to="/logout">ログアウト</Link>
+            <li onClick={closeMenu}>
+              <Link to="/createpost">投稿</Link>
+            </li>
+            <li onClick={closeMenu}>
+              <a href="https://l--l.jp/gtlist/in.cgi?cd=sc2v4y2qdqq6">
+                参加表明
+              </a>
+            </li>
+            <li onClick={closeMenu}>
+              <Link to="/logout">ログアウト</Link>
+            </li>
           </>
         )}
       </ul>

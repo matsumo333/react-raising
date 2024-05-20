@@ -17,9 +17,13 @@ const Logout = ({ setIsAuth, setUsername }) => {
   };
 
   return (
-    <div className="container2">
-      <button onClick={logout}>ログアウト</button>
-    </div>
+    <>
+      <div className="logout-container">
+        <button className="logout-button" onClick={logout}>
+          ログアウト
+        </button>
+      </div>
+    </>
   );
 };
 

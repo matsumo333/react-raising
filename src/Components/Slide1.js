@@ -1,6 +1,7 @@
+import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import ExampleCarouselImage from "./ExampleCarouselImage"; // 相対パスを修正
-
+import "bootstrap/dist/css/bootstrap.min.css";
 function Slide1() {
   return (
     <Carousel>
