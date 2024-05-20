@@ -6,7 +6,7 @@
   transform: translateX(-50%); /* 左右中央揃え */
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 20px;
   width: 500px;
   background-color: #4f8fd3;
   border: 00px solid #6369be;
@@ -26,12 +26,16 @@
   text-decoration: none;
   color: rgb(240, 240, 246); /* リンクの色 */
   background-color: rgb(21, 36, 154);
-  margin: 20px 30px;
-  padding: 10px 30px;
+  margin: 20px 20px 20px 20px;
+  padding: 10px 20px;
   transition: 200ms;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   box-shadow: 8px 8px 8px -5px #414141;
   font-size: 1.2rem;
+  min-width: 240px;
+  width: 92%;
 }
 
 .links-content a:hover {
@@ -48,4 +52,13 @@
   border: 1px solid;
   font-size: 20px;
   cursor: pointer;
+}
+@media (max-width: 600px) {
+  .links-container {
+    width: 90%;
+  }
+  .links-content a {
+    width: 90%;
+    /* max-width: 300px; */
+  }
 }
