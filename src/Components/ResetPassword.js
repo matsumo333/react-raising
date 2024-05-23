@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { sendPasswordResetEmail, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import "./main.scss";
 const ResetPassword = () => {
   const [resetEmail, setResetEmail] = useState("");
   const navigate = useNavigate();
@@ -24,24 +24,26 @@ const ResetPassword = () => {
   return (
     <>
       <div className="reset-container">
-        <button className="close-button" onClick={() => cancel()}>
-          ｘ
-        </button>
-        <form onSubmit={handlePasswordReset}>
-          <div className="login-content">
-            <label>再設定を行うメールアドレスを入力</label>
-            <input
-              type="email"
-              value={resetEmail}
-              onChange={(e) => setResetEmail(e.target.value)}
-              className="login-input"
-              required
-            />
-            <button type="submit" className="reset-button">
-              再設定のメールを送付
-            </button>
-          </div>
-        </form>
+        <div className="content2">
+          <button className="close-button" onClick={() => cancel()}>
+            ｘ
+          </button>
+          <form onSubmit={handlePasswordReset}>
+            <div className="login-content">
+              <label>再設定を行うメールアドレスを入力</label>
+              <input
+                type="email"
+                value={resetEmail}
+                onChange={(e) => setResetEmail(e.target.value)}
+                className="login-input"
+                required
+              />
+              <button type="submit" className="reset-button">
+                再設定のメールを送付
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

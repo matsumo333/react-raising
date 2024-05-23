@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CreatePost.css";
+import "./main.scss";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,6 @@ const CreatePost = () => {
   const navigate = useNavigate();
 
   const createPost = () => {
-    console.log("コロッケ" + title);
     console.log(postText);
   };
 

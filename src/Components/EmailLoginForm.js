@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import "./Login.css";
+import "./main.scss";
 import { useNavigate } from "react-router-dom";
 
 const EmailLoginForm = ({ setIsAuth }) => {
@@ -45,10 +45,13 @@ const EmailLoginForm = ({ setIsAuth }) => {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <div className="content">
-          <label>Email:</label>
+        <div className="content3">
+          <button className="close-button" onClick={() => navigate("/")}>
+            X
+          </button>
+          <label>メールアドレス</label>
           <input
-            className="login-input"
+            className="login-input-e"
             type="email"
             value={email}
             onChange={handleEmailChange}
@@ -56,8 +59,8 @@ const EmailLoginForm = ({ setIsAuth }) => {
           />
         </div>
         <br />
-        <div className="content">
-          <label>Password:</label>
+        <div className="content3">
+          <label>パスワード</label>
           <input
             className="login-input"
             type="password"
