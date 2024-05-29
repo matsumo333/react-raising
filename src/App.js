@@ -10,6 +10,10 @@ import Login from "./Components/Login";
 import { useState } from "react";
 import SignUpForm from "./Components/SignUpForm";
 import Slide1 from "./Components/Slide1";
+import MemberCreate from "./Components/MemberCreate";
+import MemberList from "./Components/MemberList";
+import EventForm from "./Components/EventForm";
+import EventList from "./Components/EventList";
 import EmailLoginForm from "./Components/EmailLoginForm";
 import ResetPassword from "./Components/ResetPassword";
 import Schedule from "./Components/Schedule";
@@ -22,7 +26,7 @@ function App() {
       <Navbar isAuth={isAuth} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
         <Route path="/link" element={<Links />} />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
         <Route path="/logout" element={<Logout setIsAuth={setIsAuth} />} />
@@ -34,6 +38,10 @@ function App() {
         />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/slide1" element={<Slide1 />} />
+        <Route path="/member" element={<MemberCreate isAuth={isAuth} />} />
+        <Route path="/memberlist" element={<MemberList isAuth={isAuth} />} />
+        <Route path="/eventform" element={<EventForm isAuth={isAuth} />} />
+        <Route path="/eventlist" element={<EventList isAuth={isAuth} />} />
         <Route
           path="/emaillogin"
           element={<EmailLoginForm setIsAuth={setIsAuth} />}

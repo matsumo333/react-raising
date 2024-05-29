@@ -23,14 +23,23 @@ const Navbar = ({ isAuth }) => {
           <Link to="/">ホーム</Link>
         </li>
         <li onClick={closeMenu}>
-          <Link to="/schedule">日程</Link>
+          <Link to="/eventlist">日程</Link>
+        </li>
+        <li onClick={closeMenu}>
+          <Link to="/eventform">日程入力</Link>
         </li>
         <li onClick={closeMenu}>
           <Link to="/link">リンク</Link>
         </li>
         <li onClick={closeMenu}>
+              <Link to="/member">メンバー登録</Link>
+            </li>
+            <li onClick={closeMenu}>
+              <Link to="/memberlist">メンバー一覧</Link>
+            </li>
+        {/* <li onClick={closeMenu}>
           <Link to="/Slide1">スライド</Link>
-        </li>
+        </li> */}
         {!isAuth ? (
           <li onClick={closeMenu}>
             <Link to="/login">ログイン</Link>

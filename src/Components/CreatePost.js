@@ -1,22 +1,36 @@
-import React, { useState } from "react";
-import "./main.scss";
+import React, { useEffect, useState } from "react";
+import "./CreatePost.css";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
-const CreatePost = () => {
+const CreatePost = ({isAuth}) => {
   const [title, setTitle] = useState();
   const [postText, setPostText] = useState();
   const navigate = useNavigate();
 
-  const createPost = () => {
-    console.log(postText);
-  };
+  const createPost = async() => {
+   await addDoc(collection(db,"posts"),{
+   title:title,
+   postText :postText,
+   author:{
+    username: auth.currentUser.displayName,
+    id:auth.currentUser.uid
+   }
+  })
+  navigate("/");
+};
+
+useEffect(() => {
+if(!isAuth){
+  navigate("/login");
+}
+},[]);
 
   return (
     <div className="createPostPage">
       <div className="postContainer">
-        <h1>記事を投稿するCreatePost</h1>
+        <h1>記事を投稿する</h1>
         <div className="inputPost">
           <div>タイトル</div>
           <input

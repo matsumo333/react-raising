@@ -31,7 +31,8 @@ const EmailLoginForm = ({ setIsAuth }) => {
         password
       );
       // ログイン成功時の処理
-      console.log("ログイン成功:", userCredential.user);
+      console.log("ログイン成功:");
+      // console.log("ログイン成功:", userCredential.user);
       localStorage.setItem("isAuth", true);
       setIsAuth(true);
       navigate("/");

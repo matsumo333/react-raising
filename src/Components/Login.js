@@ -13,6 +13,7 @@ const Login = ({ setIsAuth }) => {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       setIsAuth(true);
+      navigate("/");
     } catch (error) {
       console.error("Failed to sign in with Google.", error);
     }

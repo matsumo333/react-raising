@@ -20,7 +20,7 @@ const Logout = ({ setIsAuth, setUsername }) => {
     <>
       <div className="container">
         <div className="content-logout">
-          <button className="button" onClick={logout}>
+          <button className="button-logout" onClick={logout}>
             ログアウト
           </button>
         </div>

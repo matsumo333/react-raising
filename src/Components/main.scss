@@ -21,8 +21,7 @@ body {
   flex-direction: column;
   margin-top: 0;
   width: 100%;
-  max-width: 450px; /* これを調整 */
-  padding: 10px;
+  max-width: 450px;
   align-items: center;
 }
 
@@ -62,7 +61,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  position: relative; /* Added to allow the close button to be positioned absolutely */
+  position: relative;
 }
 
 .content2 {
@@ -96,7 +95,7 @@ body {
 }
 
 content4 li {
-  margin: 510px 0; /* li要素の間隔を開ける */
+  margin: 510px 0;
   width: 100%;
 }
 
@@ -141,10 +140,14 @@ content4 li {
   margin: 20px;
 }
 
-.login-button {
+.login-button,
+.button-logout {
   color: $blue-color;
   background-color: white;
   padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  @include box-shadow;
 }
 
 .login-button-e,
@@ -285,7 +288,7 @@ content4 li {
   border: none;
   cursor: pointer;
   font-size: 10px; /* フォントサイズを小さく */
-  box-shadow: 8px 8px 8px -5px #090921;
+  @include box-shadow;
 }
 .signup-form-toggle-password:hovar {
   background-color: #1eb300;
@@ -297,7 +300,7 @@ content4 li {
   border: none;
   cursor: pointer;
   margin-left: 20px;
-  box-shadow: 8px 8px 8px -5px #090921;
+  @include box-shadow;
   height: 25px;
   text-align: center;
   justify-items: center;
@@ -315,7 +318,7 @@ content4 li {
   border: none;
   height: 40px;
   font-size: 16px;
-  box-shadow: 8px 8px 8px -5px #090921;
+  @include box-shadow;
   width: 400px;
   border-radius: 5px;
   margin: 10px 20px 20px 25px;
@@ -334,7 +337,7 @@ content4 li {
   border: none;
   cursor: pointer;
   font-size: 10px; /* フォントサイズを小さく */
-  box-shadow: 8px 8px 8px -5px #090921;
+  @include box-shadow;
   width: 20px; /* 幅を調整 */
   height: 20px; /* 高さを調整 */
 }
@@ -355,7 +358,7 @@ content4 li {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  box-shadow: 8px 8px 8px -5px #090921;
+  @include box-shadow;
 }
 
 /* Links.css */
