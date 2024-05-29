@@ -29,7 +29,7 @@ const EventList = () => {
       console.log("User is not logged in");
       return;
     }
-    // console.log("User is logged in");
+    
     const eventRef = doc(db, "events", eventId);
     await updateDoc(eventRef, {
       participants: arrayUnion(currentUser.uid)
@@ -39,6 +39,13 @@ const EventList = () => {
       eventId: eventId,
       memberId: currentUser.uid
     });
+
+    // データを再取得して再表示
+    const eventCollection = collection(db, "events");
+    const eventSnapshot = await getDocs(eventCollection);
+    const updatedEventList = eventSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    setEvents(updatedEventList);
+    console.log("再表示してよ");
   };
 
   return (
@@ -72,9 +79,7 @@ const EventList = () => {
   );
 };
 
-
 const ParticipantList = ({ eventId }) => {
-  const [participantIds, setParticipantIds] = useState([]); 
   const [participantNames, setParticipantNames] = useState([]); 
 
   useEffect(() => {
@@ -84,26 +89,26 @@ const ParticipantList = ({ eventId }) => {
         where("eventId", "==", eventId)
       );
       const eventMembersSnapshot = await getDocs(eventMembersQuery);
-      // const ids = eventMembersSnapshot.docs.map((doc) => doc.data().memberId);
-      const ids = eventMembersSnapshot.docs.map((doc) => doc.data().memberId).flat();
+      
+      const ids = eventMembersSnapshot.docs.map((doc) => doc.data().memberId);
 
-      console.log("イベント参加メンバーID",ids);
-      const names = await Promise.all(ids.map(async (userId) => {
-        const userDoc = await getDoc(doc(db, "members", userId));
-        console.log("メンバーデータ", userDoc);
-        if (userDoc.exists()) {
+      const names = await Promise.all(ids.map(async (memberId) => {
+        const membersQuery = query(collection(db, "members"), where("author.id", "==", memberId));
+        const membersSnapshot = await getDocs(membersQuery);
+        
+        if (!membersSnapshot.empty) {
+          const userDoc = membersSnapshot.docs[0]; // Assuming there's only one matching document
           const userData = userDoc.data();
-          if (userData && userData.author && userData.author.id) {
-            const memberId = userData.author.id;
-            return memberId;
-          } else {
-            return "Unknown User";
-          }
+          const accountname = userData.accountname;
+          return accountname;
         } else {
-          return "ドキュメントが存在しません";
+          console.log("メンバーが見つかりませんでした。");
+          return "Unknown User";
         }
       }));
+
       setParticipantNames(names);
+      console.log("お名前",setParticipantNames);
     };
 
     getEventParticipants();

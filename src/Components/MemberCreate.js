@@ -5,7 +5,7 @@ import "./MemberCreate.scss";
 
 const MemberCreate = () => {
   const [member, setMember] = useState({
-    accountName: "",
+    accountname: "",
     email: "",
     tel_num: "",
     rank: "",
@@ -44,7 +44,7 @@ const MemberCreate = () => {
       <form onSubmit={handleSubmit}>
         <div className="formField">
           <label>アカウントネーム:</label>
-          <input type="text" name="accountName" value={member.accountName} onChange={handleChange} />
+          <input type="text" name="accountname" value={member.accountname} onChange={handleChange} />
         </div>
         <div className="formField">
           <label>連絡用メールアドレス:</label>
