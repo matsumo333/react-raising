@@ -4,7 +4,7 @@ import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { auth } from "../firebase";
 
-const Home = () => {
+const Home = ({isAuth}) => {
   const [postList, setPostList] = useState([]);
   useEffect(() => {
     const getPosts = async () => {

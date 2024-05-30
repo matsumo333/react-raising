@@ -40,7 +40,7 @@ const MemberCreate = () => {
 
   return (
     <div className="MemberCreateContainer">
-      <h2>会員情報を入力する</h2>
+      <h2>利用される前に会員情報を入力してください。</h2>
       <form onSubmit={handleSubmit}>
         <div className="formField">
           <label>アカウントネーム:</label>

@@ -18,6 +18,9 @@ import EmailLoginForm from "./Components/EmailLoginForm";
 import ResetPassword from "./Components/ResetPassword";
 import Schedule from "./Components/Schedule";
 import TennisOff from "./Components/TennisOff";
+// テスト用のものです
+import Test from "./Components/Test";
+import Confirmation from "./Components/Confirmation";
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
@@ -32,6 +35,9 @@ function App() {
         <Route path="/logout" element={<Logout setIsAuth={setIsAuth} />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/tennisoff" element={<TennisOff />} />
+        {/* Test用のものです */}
+        <Route path="/test" element={<Test />} />
+
         <Route
           path="/signupform"
           element={<SignUpForm setIsAuth={setIsAuth} />}
@@ -42,6 +48,7 @@ function App() {
         <Route path="/memberlist" element={<MemberList isAuth={isAuth} />} />
         <Route path="/eventform" element={<EventForm isAuth={isAuth} />} />
         <Route path="/eventlist" element={<EventList isAuth={isAuth} />} />
+        <Route path="/confirmation" element={<Confirmation isAuth={isAuth} />} />
         <Route
           path="/emaillogin"
           element={<EmailLoginForm setIsAuth={setIsAuth} />}
