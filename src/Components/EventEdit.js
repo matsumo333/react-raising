@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
-import { useParams } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 
 function EventEdit() {
     const { id } = useParams();
+    const navigate = useNavigate(); 
     console.log(useParams());
     const [event, setEvent] = useState({
         title: "",
@@ -78,7 +79,7 @@ function EventEdit() {
         try {
             await updateDoc(doc(db, "events", id), updatedEvent);
             console.log("イベント情報が正常に更新されました");
-            window.location.href = "/eventlist";
+            navigate("/eventlist"); 
         } catch (error) {
             console.error("イベント情報の更新中にエラーが発生しました:", error);
         }

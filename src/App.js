@@ -15,6 +15,7 @@ import MemberList from "./Components/MemberList";
 import EventForm from "./Components/EventForm";
 import EventEdit from "./Components/EventEdit";
 import EventList from "./Components/EventList";
+import Eventcan from "./Components/Eventcan";
 import EmailLoginForm from "./Components/EmailLoginForm";
 import ResetPassword from "./Components/ResetPassword";
 import Schedule from "./Components/Schedule";
@@ -51,6 +52,7 @@ function App() {
         <Route path="/eventedit" element={<EventEdit isAuth={isAuth} />} />
         <Route path="/eventedit/:id" element={<EventEdit isAuth={isAuth} />} />
         <Route path="/eventlist" element={<EventList isAuth={isAuth} />} />
+        <Route path="/eventcancel/:id" element={<Eventcan isAuth={isAuth} />} />
         <Route path="/confirmation" element={<Confirmation isAuth={isAuth} />} />
         <Route
           path="/emaillogin"

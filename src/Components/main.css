@@ -1,11 +1,7 @@
-@import "../styles/variables";
-@import "../styles/mixins";
-
+@charset "UTF-8";
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff !important; /* 水色 */
@@ -51,11 +47,11 @@ body {
   width: 90%;
   max-width: 500px; /* これを調整 */
   color: rgb(245, 245, 249);
-  background-color: $blue-color;
+  background-color: rgb(21, 36, 154);
   padding: 10px 20px;
   transition: 200ms;
   border-radius: 5px;
-  @include box-shadow;
+  box-shadow: 8px 8px 8px -5px black;
   text-align: center;
   display: flex;
   align-items: center;
@@ -75,8 +71,9 @@ body {
 
 .content2 {
   width: 430px;
-  background-color: $midle-blue-color;
+  background-color: #4f8fd3;
 }
+
 .content3 {
   margin: 20px 0 -20px 0;
   padding: 15px 0 10px 0;
@@ -92,7 +89,7 @@ body {
 }
 
 .content-logout {
-  background-color: $midle-blue-color;
+  background-color: #4f8fd3;
   margin-top: 10px;
   padding: 20px;
 }
@@ -116,8 +113,9 @@ content4 li {
 
 .content-link {
   width: 500px;
-  background-color: $midle-blue-color;
+  background-color: #4f8fd3;
 }
+
 .close-button {
   position: absolute;
   top: 10px;
@@ -137,10 +135,12 @@ content4 li {
 .links-lable {
   font-size: 20px;
 }
+
 .content {
   margin-top: 15px;
   padding-bottom: 15px;
 }
+
 .inner-content {
   margin-top: -10px;
   width: 90%;
@@ -151,12 +151,12 @@ content4 li {
 
 .login-button,
 .button-logout {
-  color: $blue-color;
+  color: rgb(21, 36, 154);
   background-color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  @include box-shadow;
+  box-shadow: 8px 8px 8px -5px black;
 }
 
 .login-button-e,
@@ -168,7 +168,7 @@ content4 li {
 .login-button-e {
   width: 100px;
   margin-left: 20px;
-  color: $blue-color;
+  color: rgb(21, 36, 154);
   font-size: 16px;
   background-color: #f9f9f9;
 }
@@ -182,6 +182,7 @@ content4 li {
 .login-content label {
   margin-bottom: -20px;
 }
+
 .login-input {
   padding: 8px;
   margin-top: 10px;
@@ -196,7 +197,7 @@ content4 li {
 }
 
 .container button:hover {
-  background-color: $hover-color;
+  background-color: #1eb300;
   cursor: pointer;
 }
 
@@ -247,7 +248,7 @@ content4 li {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $blue-color;
+  background-color: rgb(21, 36, 154);
   flex-direction: column;
   margin: 10px 10px 10px 25px;
   color: white;
@@ -267,6 +268,7 @@ content4 li {
   text-align: left;
   margin-bottom: 3px;
 }
+
 .signup-form-input {
   margin-bottom: 10px;
   padding: 5px;
@@ -286,6 +288,7 @@ content4 li {
   padding: 5px;
   width: 360px; /* ボタンの幅を除いた幅 */
 }
+
 .signup-form-password {
   display: flex;
 }
@@ -297,8 +300,9 @@ content4 li {
   border: none;
   cursor: pointer;
   font-size: 10px; /* フォントサイズを小さく */
-  @include box-shadow;
+  box-shadow: 8px 8px 8px -5px black;
 }
+
 .signup-form-toggle-password:hovar {
   background-color: #1eb300;
 }
@@ -309,7 +313,7 @@ content4 li {
   border: none;
   cursor: pointer;
   margin-left: 20px;
-  @include box-shadow;
+  box-shadow: 8px 8px 8px -5px black;
   height: 25px;
   text-align: center;
   justify-items: center;
@@ -327,7 +331,7 @@ content4 li {
   border: none;
   height: 40px;
   font-size: 16px;
-  @include box-shadow;
+  box-shadow: 8px 8px 8px -5px black;
   width: 400px;
   border-radius: 5px;
   margin: 10px 20px 20px 25px;
@@ -346,7 +350,7 @@ content4 li {
   border: none;
   cursor: pointer;
   font-size: 10px; /* フォントサイズを小さく */
-  @include box-shadow;
+  box-shadow: 8px 8px 8px -5px black;
   width: 20px; /* 幅を調整 */
   height: 20px; /* 高さを調整 */
 }
@@ -367,13 +371,12 @@ content4 li {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  @include box-shadow;
+  box-shadow: 8px 8px 8px -5px black;
 }
 
 /* Links.css */
-
 .links-label {
-  color: $blue-color;
+  color: rgb(21, 36, 154);
   text-align: center;
   padding-top: 20px;
   font-size: 25px;
@@ -418,7 +421,6 @@ content4 li {
     width: 100%;
     padding: 10px;
   }
-
   .links-content {
     width: 100%;
   }
@@ -426,11 +428,10 @@ content4 li {
     width: 80%;
     font-size: 15px;
   }
-
   .login-input-e {
     width: 85%;
   }
   .login-input {
     width: 85%;
   }
-}
+}/*# sourceMappingURL=main.css.map */

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db,auth} from "../firebase"; // Firebaseの初期化設定が含まれているモジュールをインポート
 import "./EventForm.scss";
+import { useNavigate } from 'react-router-dom';
 
 const EventForm = () => {
+  const navigate = useNavigate();
   const [event, setEvent] = useState({
     title: "",
     site: "",
@@ -45,7 +47,7 @@ const EventForm = () => {
   
     try {
       await addDoc(collection(db, "events"), eventWithTimestampAndAuthor);
-      window.location.href = "/eventlist";
+      navigate("/eventlist");
       console.log("イベント情報が正常に送信されました");
 
     } catch (error) {
