@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, updateDoc, doc, arrayUnion, addDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, doc, arrayUnion, addDoc, query, where, deleteDoc } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 import './EventList.scss';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
@@ -68,6 +68,27 @@ const EventList = () => {
     navigate('/confirmation');
   };
 
+  /** イベントを削除する。
+   * 
+   * @param {*} id 
+   */
+  const handleEditClick = async (id) => {
+    console.log("きてtrue" + id);
+    await deleteDoc(doc(db, "events", id));
+    window.location.href = "/eventedit";
+  };
+
+    /** イベントを編集する。
+   * 
+   * @param {*} id 
+   */
+    const handleDelete = async (id) => {
+      console.log("きてtrue" + id);
+      await deleteDoc(doc(db, "events", id));
+      window.location.href = "/eventlist";
+    };
+  
+
   return (
     <div className="eventListContainer">
       <h1>イベント一覧</h1>
@@ -75,14 +96,24 @@ const EventList = () => {
         <thead>
           <tr>
             <th>タイトル</th>
+            <th>開催場所</th>
+            <th>コート数</th>
+            <th>定員</th>
+            <th>コート面</th>         
             <th>参加者</th>
             <th>参加</th>
+            <th>編集</th>
+            <th>編集</th>
           </tr>
         </thead>
         <tbody>
           {events.map((event, index) => (
             <tr key={index}>
               <td>{event.title}</td>
+              <td>{event.site_region}</td>
+              <td>{event.court_count}</td>
+              <td>{event.capacity}</td>
+              <td>{event.court_surface}</td>
               <td>
                 <ParticipantList key={event.id} eventId={event.id} />
               </td>
@@ -94,6 +125,12 @@ const EventList = () => {
                     参加する
                   </button>
                 )}
+              </td>
+              <td>
+              <button onClick={() => handleDelete(event.id)}>削除</button>
+              </td>
+              <td>
+              <Link to={`/eventedit/${event.id}`}>編集する</Link>
               </td>
             </tr>
           ))}

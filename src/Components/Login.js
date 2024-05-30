@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { db,auth,provider } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import "./main.scss";
 
@@ -10,34 +10,14 @@ const Login = ({ setIsAuth }) => {
   const [accountName, setAccountName] = useState(null);
 
   const handleGoogleLogin = async () => {
-    try {
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      setIsAuth(true);
-
-      // ユーザーの UID で members コレクションをクエリして accountname を取得
-      const membersQuery = query(
-        collection(db, "members"),
-        where("author.id", "==", user.uid)
-      );
-      const membersSnapshot = await getDocs(membersQuery);
-
-      if (!membersSnapshot.empty) {
-        const userDoc = membersSnapshot.docs[0]; // Assuming there's only one matching document
-        const userData = userDoc.data();
-        setAccountName(userData.accountname);
-        navigate("/");
-      } else {
-        console.log("Account name not found. Redirecting to registration.");
-        navigate("/member-registration");
-      }
-
-    } catch (error) {
-      console.error("Failed to sign in with Google.", error);
-    }
-  };
+     //Googleでログイン
+  signInWithPopup(auth,provider).then((result) =>{
+    localStorage.setItem('isAuth',true);
+    setIsAuth(true);
+    console.log(result);
+    navigate("/");
+  });
+ };
 
   const handleEmailLogin = () => {
     navigate("/emaillogin");

@@ -13,6 +13,7 @@ import Slide1 from "./Components/Slide1";
 import MemberCreate from "./Components/MemberCreate";
 import MemberList from "./Components/MemberList";
 import EventForm from "./Components/EventForm";
+import EventEdit from "./Components/EventEdit";
 import EventList from "./Components/EventList";
 import EmailLoginForm from "./Components/EmailLoginForm";
 import ResetPassword from "./Components/ResetPassword";
@@ -47,6 +48,8 @@ function App() {
         <Route path="/member" element={<MemberCreate isAuth={isAuth} />} />
         <Route path="/memberlist" element={<MemberList isAuth={isAuth} />} />
         <Route path="/eventform" element={<EventForm isAuth={isAuth} />} />
+        <Route path="/eventedit" element={<EventEdit isAuth={isAuth} />} />
+        <Route path="/eventedit/:id" element={<EventEdit isAuth={isAuth} />} />
         <Route path="/eventlist" element={<EventList isAuth={isAuth} />} />
         <Route path="/confirmation" element={<Confirmation isAuth={isAuth} />} />
         <Route
