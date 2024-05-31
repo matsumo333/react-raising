@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db,auth,provider } from "../firebase";
+import { db, auth, provider } from "../firebase"; // providerは使用していないので削除
 import { useNavigate } from "react-router-dom";
 import "./main.scss";
 
-const Login = ({ setIsAuth }) => {
-  const navigate = useNavigate();
+const Login = ({setIsAuth}) => {
+  const navigate =useNavigate();
   const [accountName, setAccountName] = useState(null);
-
-  const handleGoogleLogin = async () => {
-     //Googleでログイン
+  const loginInWithGoogle = () =>{
+  //Googleでログイン
   signInWithPopup(auth,provider).then((result) =>{
     localStorage.setItem('isAuth',true);
     setIsAuth(true);
@@ -59,7 +58,7 @@ const Login = ({ setIsAuth }) => {
     <div className="container">
       <div className="content">
         <p>Googleアカウントでログイン</p>
-        <button className="button login-button" onClick={handleGoogleLogin}>
+        <button className="button login-button" onClick={loginInWithGoogle}>
           Googleでログイン
         </button>
       </div>
