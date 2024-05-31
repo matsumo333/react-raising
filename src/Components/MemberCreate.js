@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { db,auth } from "../firebase"; // Firebaseの初期化設定が含まれているモジュールをインポート
+import { db, auth } from "../firebase"; // Firebaseの初期化設定が含まれているモジュールをインポート
 import "./MemberCreate.scss";
 
 const MemberCreate = () => {
@@ -13,34 +13,59 @@ const MemberCreate = () => {
     photo: "",
     video: "",
     administrator: false,
-    author:{
-      username: auth.currentUser.displayName,
-      id:auth.currentUser.uid
-     }
+    author: {
+      username: "",
+      id: ""
+    }
   });
 
+  const [error, setError] = useState("");
+
+  // useEffectを使ってコンポーネントの初期化時にcurrentUserのデータを設定
+  useEffect(() => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      setMember(prevMember => ({
+        ...prevMember,
+        author: {
+          username: currentUser.displayName,
+          id: currentUser.uid
+        }
+      }));
+    } else {
+      setError("ユーザーが認証されていません。ログインしてください。");
+    }
+  }, []);
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setMember(prevMember => ({
       ...prevMember,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!auth.currentUser) {
+      setError("ユーザーが認証されていません。ログインしてください。");
+      return;
+    }
     try {
       const memberRef = collection(db, "members");
       await addDoc(memberRef, member);
       // フォーム送信後に入力フィールドをクリアするなどの追加のロジックをここに追加することができます
+      setError(""); // エラーをクリア
     } catch (error) {
       console.error("Error adding document: ", error);
+      setError("データの登録中にエラーが発生しました。");
     }
   };
 
   return (
     <div className="MemberCreateContainer">
       <h2>利用される前に会員情報を入力してください。</h2>
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className="formField">
           <label>アカウントネーム:</label>
