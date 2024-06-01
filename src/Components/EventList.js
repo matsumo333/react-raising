@@ -46,22 +46,32 @@ const EventList = () => {
       setParticipantCounts(counts);
     };
 
+    const checkMemberRegistration = async (userId) => {
+      const membersQuery = query(collection(db, 'members'), where('author.id', '==', userId));
+      const membersSnapshot = await getDocs(membersQuery);
+      if (membersSnapshot.empty) {
+        alert('あなたはメンバー名が未登録です。メンバー登録でお名前を登録してください。');
+        navigate('/member');
+      }
+    };
+
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       if (user) {
         fetchUserEventParticipation(user.uid);
+        checkMemberRegistration(user.uid); // メンバー登録の確認
       }
     });
 
     fetchEvents();
 
-       // イベントの参加者数を取得
+    // イベントの参加者数を取得
     if (events.length > 0) {
       fetchParticipantCounts();
     }
 
     return unsubscribe;
-  }, []);
+  }, [events]);
 
   const handleJoinEvent = async (eventId) => {
     if (!currentUser) {
@@ -173,14 +183,13 @@ const ParticipantList = ({ eventId }) => {
         const userData = userDoc.data();
         const accountname = userData.accountname;
         return (
-          // ボタンに変更
           <button key={eventId} onClick={() => navigate(`/eventcancel/${eventId}`)} style={{ fontSize: '16px',padding:'1px',marginBottom:'1px',backgroundColor:'rgb(25, 51, 223)' }}>
             {accountname}
           </button>
         );
       } else {
-        alert('あなたはメンバー名が未登録ですメンバー登録でお名前を登録してください。' );
-        return 'あなたはメンバー名が未登録ですメンバー登録でお名前を登録してください。';
+        alert('あなたはメンバー名が未登録です。メンバー登録でお名前を登録してください。');
+        navigate('/member');
       }
     }));
 

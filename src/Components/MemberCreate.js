@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../firebase"; // Firebaseの初期化設定が含まれているモジュールをインポート
+import { useNavigate } from 'react-router-dom';
 import "./MemberCreate.scss";
 
 const MemberCreate = () => {
+  const navigate = useNavigate();
   const [member, setMember] = useState({
     accountname: "",
     email: "",
@@ -23,18 +25,22 @@ const MemberCreate = () => {
 
   // useEffectを使ってコンポーネントの初期化時にcurrentUserのデータを設定
   useEffect(() => {
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      setMember(prevMember => ({
-        ...prevMember,
-        author: {
-          username: currentUser.displayName,
-          id: currentUser.uid
-        }
-      }));
-    } else {
-      setError("ユーザーが認証されていません。ログインしてください。");
-    }
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        setMember(prevMember => ({
+          ...prevMember,
+          author: {
+            username: currentUser.displayName || "Anonymous",
+            id: currentUser.uid
+          }
+        }));
+      } else {
+        setError("ユーザーが認証されていません。ログインしてください。");
+      }
+    });
+
+    // クリーンアップ関数を返す
+    return () => unsubscribe();
   }, []);
 
   const handleChange = (e) => {
@@ -54,11 +60,14 @@ const MemberCreate = () => {
     try {
       const memberRef = collection(db, "members");
       await addDoc(memberRef, member);
+      console.log("Member added successfully");
       // フォーム送信後に入力フィールドをクリアするなどの追加のロジックをここに追加することができます
       setError(""); // エラーをクリア
+      console.log("Navigating to /eventlist");
+      navigate("/eventlist");
     } catch (error) {
       console.error("Error adding document: ", error);
-      setError("データの登録中にエラーが発生しました。");
+      setError(`データの登録中にエラーが発生しました。詳細: ${error.message}`);
     }
   };
 
